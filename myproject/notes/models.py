@@ -6,8 +6,8 @@ from django import forms
 class Note(models.Model):
     title = models.CharField(max_length=75)
     body = models.TextField(default='', blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
     user = models.ForeignKey(User,on_delete=models.CASCADE, related_name='notes')
 
     def __str__(self):

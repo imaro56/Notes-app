@@ -13,7 +13,7 @@
                     <article class="card shadow-sm hvr-shadow">
                         <a href="{% url 'notes:page' id=note.id %}" class="stretched-link text-decoration-none text-dark">
                             <div class="card-body">
-                                <h4 class="card-title">{{ note.title }}</h4>
+                                <h4 class="card-title" >{{ note.title|slice:":27" }}{% if note.title|length > 27 %}...{% endif %}</h4>
                             </div>
                         </a>
                     </article>
