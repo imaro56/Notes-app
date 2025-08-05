@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Notes List
+{% endblock %}
+
+{% block content %}
+    <section class="py-4">
+        <h1 class="mb-4">Notes</h1>
+        <div class="row">
+            {% for note in notes %}
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <article class="card shadow-sm hvr-shadow">
+                        <a href="{% url 'notes:page' id=note.id %}" class="stretched-link text-decoration-none text-dark">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ note.title }}</h4>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <style>
+        .hvr-shadow:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+    </style>
+{% endblock %}

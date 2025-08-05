@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Notes{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        .btn-outline-primary, .btn-outline-secondary {
+            border-width: 2px;
+        }
+    </style>
+</head>
+<body>
+<!-- Nav bar -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand d-none d-sm-block" href="{% url 'home' %}">NoteApp</a>
+
+        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- Notes button -->
+            <a class="btn btn-outline-secondary ms-2" href="{% url 'notes:list' %}">Notes</a>
+            <!-- New Note button -->
+            <a class="btn btn-outline-primary ms-2" href="#">New Note</a>
+        </div>
+
+        <!-- Profile or Sign In / Sign Up -->
+        <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+                <!-- Icon -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'img/profile.png' %}" alt="profile" width="30" height="30"
+                             class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="{% url 'users:sign_out' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item" aria-label="Sign Out"
+                                        title="Sign Out">Sign Out
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <!-- Sign In / Sign Up buttons -->
+                <a class="btn btn-outline-primary me-2" href="{% url 'users:sign_in' %}">Sign In</a>
+                <a class="btn btn-outline-secondary me-2" href="{% url 'users:sign_up' %}">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+    {% block content %}
+        <!-- Page Content -->
+    {% endblock %}
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

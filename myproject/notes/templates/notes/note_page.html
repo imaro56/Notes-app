@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title%}
+{{ note.title }}
+{% endblock %}
+
+{% block content %}
+<section>
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.body }}</p>
+    <p>{{ note.created_at }}</p>
+</section>
+{% endblock %}
+
