@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    New Note
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .note-container {
+            max-width: 700px;
+            margin: 50px auto;
+        }
+        .note-card {
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #id_title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            min-height: 50px;
+            line-height: 1.4;
+        }
+        #id_content {
+            font-size: 1.1rem;
+            min-height: 200px;
+            line-height: 1.6;
+        }
+        .btn-save {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="container note-container">
+        <div class="card note-card">
+            <div class="card-body">
+                <form id="noteForm" method="post">
+                    {% csrf_token %}
+                    {{ form.title }}
+                    {{ form.body }}
+                    <button type="submit" class="btn btn-primary btn-save">Save Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function autoResize(element) {
+            element.style.height = 'auto';
+            element.style.height = `${element.scrollHeight}px`;
+        }
+
+        const titleInput = document.getElementById('id_title');
+        const contentTextarea = document.getElementById('id_content');
+
+        [titleInput, contentTextarea].forEach(element => {
+            element.addEventListener('input', () => autoResize(element));
+            autoResize(element);
+        });
+    </script>
+{% endblock %}

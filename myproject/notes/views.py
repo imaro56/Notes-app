@@ -8,7 +8,7 @@ from . import forms
 
 @login_required(login_url='/users/sign_in/')
 def notes_list(request):
-    user_notes = Note.objects.filter(user_id_id=request.user.id).order_by('-created_at')
+    user_notes = Note.objects.filter(user_id=request.user.id).order_by('-created_at')
     return render(request, 'notes/notes_list.html', {'notes': user_notes})
 
 def note_page(request,id):
@@ -21,12 +21,12 @@ def note_new(request):
         form = forms.CreateNote(request.POST, request.FILES)
         if form.is_valid():
             newnote = form.save(commit=False)
-            newnote.author = request.user
+            newnote.user = request.user
             newnote.save()
             return redirect('notes:list')
     else:
-        form = forms.CreatePost()
-    return render(request, 'notes/new.html',{'form': form})
+        form = forms.CreateNote()
+    return render(request, 'notes/note_new.html',{'form': form})
 
 
 
