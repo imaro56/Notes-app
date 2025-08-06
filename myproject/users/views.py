@@ -8,7 +8,7 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             login(request,form.save())
-            return redirect('home')
+            return redirect('notes:new')
     else:
         form = UserCreationForm()
     return render(request, 'users/signup.html',{'form':form})
@@ -20,8 +20,7 @@ def signin_view(request):
             login(request, form.get_user())
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
-            # should redirect to notes
-            return redirect('home')
+            return redirect('notes:list')
     else:
         form = AuthenticationForm()
     return render(request, 'users/signin.html', {'form':form})

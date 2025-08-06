@@ -44,6 +44,14 @@
             width: 100%;
             margin-top: 20px;
         }
+        .btn-back {
+            position:absolute;
+            top: -50px;
+            left:-10px;
+        }
+        .large-arrow {
+            font-size: 2rem;
+        }
     </style>
 
     <div class="container note-container">
@@ -55,6 +63,9 @@
                     {{ form.body }}
                     <button type="submit" class="btn btn-primary btn-save">Add Note</button>
                 </form>
+                <a href="{% url 'notes:list' %}"><button class="btn border-0 p-0 bg-transparent btn-back">
+                        <i class="bi bi-arrow-left large-arrow"></i>
+                    </button></a>
             </div>
         </div>
     </div>

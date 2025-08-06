@@ -28,6 +28,10 @@ def note_page(request, id):
             newnote.created_at = created_at
             newnote.updated_at = timezone.now()
             newnote.save()
+            action=request.POST.get('action')
+            print(action)
+            if action == 'save_exit':
+                return redirect('notes:list')
             return redirect('notes:page', id=newnote.id)
     else:
         form = forms.CreateNote()

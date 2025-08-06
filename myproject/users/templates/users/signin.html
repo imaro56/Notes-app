@@ -11,6 +11,9 @@
           <h2 class="card-title text-center mb-4">Sign In</h2>
           <form method="POST">
             {% csrf_token %}
+              {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+              {% endif %}
             {% for field in form %}
               <div class="mb-3">
                 {{ field.label_tag }}
