@@ -16,8 +16,8 @@ This document provides step-by-step instructions to set up and run the Django pr
    Clone the project repository to your local machine:
 
    ```bash
-   git clone <repository-url>
-   cd <project-directory>
+   git clone https://github.com/imaro56/Notes-app.git
+   cd Notes-app
    ```
 
 2. **Create a Virtual Environment**
