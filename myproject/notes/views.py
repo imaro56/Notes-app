@@ -57,7 +57,7 @@ def note_new(request):
     return render(request, 'notes/note_new.html', {'form': form})
 
 def note_delete(request, id):
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         Note.objects.get(id=id).delete()
         return redirect('notes:list')
         messages.success(request, 'Note deleted successfully!')
